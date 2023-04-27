@@ -54,10 +54,10 @@ const QuickAdd = ({
                     await axios.get("/stages")
                                 .then(data => {
                                     console.log("data is: ", data);
-                                    // setStageNodes(data.data.find((d) => d._id === uid).nodes);
-                                    // setStageEdgeNodes(data.data.find((d) => d._id === uid).edgeNodes);
-                                    // setStageAwaitNodes(data.data.find((d) => d._id === uid).awaitNodes);
-                                    // setStageCoordNodes(data.data.find((d) => d._id === uid).coordNodes);
+                                    setStageNodes(data.data.find((d) => d._id === uid).nodes);
+                                    setStageEdgeNodes(data.data.find((d) => d._id === uid).edgeNodes);
+                                    setStageAwaitNodes(data.data.find((d) => d._id === uid).awaitNodes);
+                                    setStageCoordNodes(data.data.find((d) => d._id === uid).coordNodes);
                                 });
                     // data = data.data.find((d) => d._id === uid);
                     // console.log("stage data: ", data);
