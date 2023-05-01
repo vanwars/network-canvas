@@ -93,59 +93,59 @@ function App() {
       {uid === null && <UidGenerator setUid={setUid} />}
 
       <Routes>
-        <Route path='/' element={<StageOverview setIsStage={setIsStage} />}></Route>
-        <Route path="/protocols" element={<ProtocolOverview setIsStage={setIsStage} />}></Route>
-        <Route path="/ego-form" element={<EgoForm />}></Route>
-        <Route path="quick-add-name-generator" element={<QuickAdd
-                                                            uid={uid}
-                                                            nodeRef={nodeRef}
-                                                            startPos={startPos}
-                                                            curDragNode={curDragNode}
-                                                            trashCan={trashCan}
-                                                            showTrashCan={showTrashCan}
-                                                            setShowTrashCan={setShowTrashCan}
-                                                            setNodeVal={setNodeVal}
-                                                            handleDragStart={handleDragStart}
-                                                            callBackRef={callBackRef}
-                                                            isStage={isStage} />} >
-        </Route>
-        <Route path="form-add-name-generator" element={<FormAdd
-                                                            uid={uid}
-                                                            nodeRef={nodeRef}
-                                                            nodeVal={nodeVal}
-                                                            startPos={startPos}
-                                                            curDragNode={curDragNode}
-                                                            trashCan={trashCan}
-                                                            showTrashCan={showTrashCan}
-                                                            setShowTrashCan={setShowTrashCan}
-                                                            setNodeVal={setNodeVal}
-                                                            handleChange={handleChange}
-                                                            handleDragStart={handleDragStart}
-                                                            callBackRef={callBackRef}
-                                                            isStage={isStage} />} ></Route>
-        <Route path="panel-add-name-generator" element={<PanelAdd
-                                                            uid={uid}
-                                                            nodeRef={nodeRef}
-                                                            isStage={true} />} ></Route>
-        <Route path="/name-generator" element={<NameGeneratorPrompt setNameGeneratorStage={setNameGeneratorStage} />}></Route>
-        <Route path="/sociogram-stage" element={<Sociogram uid={uid} sidePanelSwitch={sidePanelSwitch} sociogramStage={sociogramStage} isStage={true} pageIdx={pageIdx} />}></Route>
-        <Route path="/sociogram" element={<SociogramPrompt uid={uid} setSociogramStage={setSociogramStage} />}></Route>
-        <Route path="/sample-protocol" element={<Protocol
-                                                  uid={uid}
-                                                  nodeRef={nodeRef}
-                                                  startPos={startPos}
-                                                  curDragNode={curDragNode}
-                                                  trashCan={trashCan}
-                                                  showTrashCan={showTrashCan}
-                                                  setShowTrashCan={setShowTrashCan}
-                                                  setNodeVal={setNodeVal}
-                                                  handleDragStart={handleDragStart}
-                                                  callBackRef={callBackRef}
-                                                  pageIdx={pageIdx}
-                                                  sidePanelSwitch={setSidePanelSwitch}
-                                                  sociogramStage={sociogramStage}
-                                                  nameGeneratorStage={nameGeneratorStage}
-                                                  nodeVal={nodeVal} />}></Route>
+            <Route path='/' element={<StageOverview setIsStage={setIsStage} />}></Route>
+            <Route path="/protocols" element={<ProtocolOverview setIsStage={setIsStage} />}></Route>
+            <Route path="/ego-form" element={<EgoForm />}></Route>
+            <Route path="quick-add-name-generator" element={<QuickAdd
+                                                                uid={uid}
+                                                                nodeRef={nodeRef}
+                                                                startPos={startPos}
+                                                                curDragNode={curDragNode}
+                                                                trashCan={trashCan}
+                                                                showTrashCan={showTrashCan}
+                                                                setShowTrashCan={setShowTrashCan}
+                                                                setNodeVal={setNodeVal}
+                                                                handleDragStart={handleDragStart}
+                                                                callBackRef={callBackRef}
+                                                                isStage={isStage} />} >
+            </Route>
+            <Route path="form-add-name-generator" element={<FormAdd
+                                                                uid={uid}
+                                                                nodeRef={nodeRef}
+                                                                nodeVal={nodeVal}
+                                                                startPos={startPos}
+                                                                curDragNode={curDragNode}
+                                                                trashCan={trashCan}
+                                                                showTrashCan={showTrashCan}
+                                                                setShowTrashCan={setShowTrashCan}
+                                                                setNodeVal={setNodeVal}
+                                                                handleChange={handleChange}
+                                                                handleDragStart={handleDragStart}
+                                                                callBackRef={callBackRef}
+                                                                isStage={isStage} />} ></Route>
+            <Route path="panel-add-name-generator" element={<PanelAdd
+                                                                uid={uid}
+                                                                nodeRef={nodeRef}
+                                                                isStage={true} />} ></Route>
+            <Route path="/name-generator" element={<NameGeneratorPrompt setNameGeneratorStage={setNameGeneratorStage} />}></Route>
+            <Route path="/sociogram-stage" element={<Sociogram uid={uid} sidePanelSwitch={sidePanelSwitch} sociogramStage={sociogramStage} isStage={true} pageIdx={pageIdx} />}></Route>
+            <Route path="/sociogram" element={<SociogramPrompt uid={uid} setSociogramStage={setSociogramStage} />}></Route>
+            <Route path="/sample-protocol" element={<Protocol
+                                                    uid={uid}
+                                                    nodeRef={nodeRef}
+                                                    startPos={startPos}
+                                                    curDragNode={curDragNode}
+                                                    trashCan={trashCan}
+                                                    showTrashCan={showTrashCan}
+                                                    setShowTrashCan={setShowTrashCan}
+                                                    setNodeVal={setNodeVal}
+                                                    handleDragStart={handleDragStart}
+                                                    callBackRef={callBackRef}
+                                                    pageIdx={pageIdx}
+                                                    sidePanelSwitch={setSidePanelSwitch}
+                                                    sociogramStage={sociogramStage}
+                                                    nameGeneratorStage={nameGeneratorStage}
+                                                    nodeVal={nodeVal} />}></Route>
       </Routes>
 
     </div>
