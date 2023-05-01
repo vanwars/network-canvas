@@ -93,9 +93,9 @@ function App() {
       {uid === null && <UidGenerator setUid={setUid} />}
 
       <Routes>
-        <Route path='./' element={<StageOverview setIsStage={setIsStage} />}></Route>
-        <Route path="./protocols" element={<ProtocolOverview setIsStage={setIsStage} />}></Route>
-        <Route path="./ego-form" element={<EgoForm />}></Route>
+        <Route path='/' element={<StageOverview setIsStage={setIsStage} />}></Route>
+        <Route path="/protocols" element={<ProtocolOverview setIsStage={setIsStage} />}></Route>
+        <Route path="/ego-form" element={<EgoForm />}></Route>
         <Route path="quick-add-name-generator" element={<QuickAdd
                                                             uid={uid}
                                                             nodeRef={nodeRef}
@@ -127,10 +127,10 @@ function App() {
                                                             uid={uid}
                                                             nodeRef={nodeRef}
                                                             isStage={true} />} ></Route>
-        <Route path="./name-generator" element={<NameGeneratorPrompt setNameGeneratorStage={setNameGeneratorStage} />}></Route>
-        <Route path="./sociogram-stage" element={<Sociogram uid={uid} sidePanelSwitch={sidePanelSwitch} sociogramStage={sociogramStage} isStage={true} pageIdx={pageIdx} />}></Route>
-        <Route path="./sociogram" element={<SociogramPrompt uid={uid} setSociogramStage={setSociogramStage} />}></Route>
-        <Route path="./sample-protocol" element={<Protocol
+        <Route path="/name-generator" element={<NameGeneratorPrompt setNameGeneratorStage={setNameGeneratorStage} />}></Route>
+        <Route path="/sociogram-stage" element={<Sociogram uid={uid} sidePanelSwitch={sidePanelSwitch} sociogramStage={sociogramStage} isStage={true} pageIdx={pageIdx} />}></Route>
+        <Route path="/sociogram" element={<SociogramPrompt uid={uid} setSociogramStage={setSociogramStage} />}></Route>
+        <Route path="/sample-protocol" element={<Protocol
                                                   uid={uid}
                                                   nodeRef={nodeRef}
                                                   startPos={startPos}
