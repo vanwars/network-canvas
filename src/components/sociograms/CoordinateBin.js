@@ -7,6 +7,10 @@ import { FiMinimize2 } from 'react-icons/fi';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 import axios from 'axios';
 
+const stageurl = "https://network-canvas-web.herokuapp.com/stages";
+const protocolurl = "https://network-canvas-web.herokuapp.com/protocol";
+const uidurl = "https://network-canvas-web.herokuapp.com/uid";
+
 const CoordinateBin = ({
     uid,
     isStage,
@@ -25,7 +29,7 @@ const CoordinateBin = ({
         if (isStage === true) {
             const fetchStage = async() => {
                 try {
-                    let data = await axios.get("/stages");
+                    let data = await axios.get(stageurl);
                     data = data.data.find((d) => d._id === uid);
                     setStageCoordNodes(data.coordNodes);
                 }
@@ -41,7 +45,7 @@ const CoordinateBin = ({
         if (isStage === true && stageCoordNodes.length !== 0) {
             const fetchStage = async() => {
                 try {
-                    await axios.patch("/stages", {_id: uid, coordNodes: stageCoordNodes});
+                    await axios.patch(stageurl, {_id: uid, coordNodes: stageCoordNodes});
                 }
                 catch(error){
                     console.log(error);
@@ -57,7 +61,7 @@ const CoordinateBin = ({
         if (isStage === false) {
             const fetchProtocol = async() => {
                 try {
-                    let data = await axios.get("/protocol");
+                    let data = await axios.get(protocolurl);
                     data = data.data.find((d) => d._id === uid);
                     setProtocolCoordNodes(data.coordNodes);
                 }
@@ -73,7 +77,7 @@ const CoordinateBin = ({
         if (isStage === false && protocolCoordNodes.length !== 0) {
             const fetchProtocol = async() => {
                 try {
-                    await axios.patch("/protocol", {_id: uid, coordNodes: protocolCoordNodes});
+                    await axios.patch(protocolurl, {_id: uid, coordNodes: protocolCoordNodes});
                 }
                 catch(error){
                     console.log(error);

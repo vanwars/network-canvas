@@ -9,6 +9,12 @@ import { FiMinimize2 } from 'react-icons/fi';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 import axios from "axios";
 
+
+const stageurl = "https://network-canvas-web.herokuapp.com/stages";
+const protocolurl = "https://network-canvas-web.herokuapp.com/protocol";
+const uidurl = "https://network-canvas-web.herokuapp.com/uid";
+
+
 const PanelAdd = ({
     uid,
     nodeRef,
@@ -33,7 +39,7 @@ const PanelAdd = ({
         if (isStage === true) {
             const fetchStage = async() => {
                 try {
-                    let data = await axios.get("/stages");
+                    let data = await axios.get(stageurl);
                     data = data.data.find((d) => d._id === uid);
                     setStageAwaitNodes(data.awaitNodes);
                     setStageSelectedNodes(data.selectedNodes);
@@ -51,7 +57,7 @@ const PanelAdd = ({
         if (isStage === true && isStageEdited === true) {
             const fetchStage = async() => {
                 try {
-                    await axios.patch("/stages", {_id: uid, awaitNodes: stageAwaitNodes, selectedNodes: stageSelectedNodes});
+                    await axios.patch(stageurl, {_id: uid, awaitNodes: stageAwaitNodes, selectedNodes: stageSelectedNodes});
                 }
                 catch(error){
                     console.log(error);
@@ -66,7 +72,7 @@ const PanelAdd = ({
         if (isStage === false) {
             const fetchProtocol = async() => {
                 try {
-                    let data = await axios.get("/protocol");
+                    let data = await axios.get(protocolurl);
                     data = data.data.find((d) => d._id === uid);
                     setProtocolAwaitNodes(data.awaitNodes);
                     setProtocolSelectedNodes(data.selectedNodes);
@@ -84,7 +90,7 @@ const PanelAdd = ({
         if (isStage === false && isProtocolEdited === true) {
             const fetchProtocol = async() => {
                 try {
-                    await axios.patch("/protocol", {_id: uid, awaitNodes: protocolAwaitNodes, selectedNodes: protocolSelectedNodes});
+                    await axios.patch(protocolurl, {_id: uid, awaitNodes: protocolAwaitNodes, selectedNodes: protocolSelectedNodes});
                 }
                 catch(error){
                     console.log(error);

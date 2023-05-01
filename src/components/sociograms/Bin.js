@@ -9,6 +9,11 @@ import { getStages, updateStage, createStage } from '../../actions/stages';
 import { updateProtocol, createProtocol } from '../../actions/protocol';
 import axios from "axios";
 
+const stageurl = "https://network-canvas-web.herokuapp.com/stages";
+const protocolurl = "https://network-canvas-web.herokuapp.com/protocol";
+const uidurl = "https://network-canvas-web.herokuapp.com/uid";
+
+
 const Bin = ({
     uid,
     isStage,
@@ -34,7 +39,7 @@ const Bin = ({
         if (isStage === true) {
             const fetchStage = async() => {
                 try {
-                    let data = await axios.get("/stages");
+                    let data = await axios.get(stageurl);
                     data = data.data.find((d) => d._id === uid);
                     setStageNodes(data.nodes);
                 }
@@ -50,7 +55,7 @@ const Bin = ({
         if (isStage === true && isStageEdited === true) {
             const fetchStage = async() => {
                 try {
-                    await axios.patch("/stages", {_id: uid, nodes: stageNodes});
+                    await axios.patch(stageurl, {_id: uid, nodes: stageNodes});
                 }
                 catch(error){
                     console.log(error);
@@ -65,7 +70,7 @@ const Bin = ({
         if (isStage === false) {
             const fetchProtocol = async() => {
                 try {
-                    let data = await axios.get("/protocol");
+                    let data = await axios.get(protocolurl);
                     data = data.data.find((d) => d._id === uid);
                     setProtocolNodes(data.nodes);
                 }
@@ -81,7 +86,7 @@ const Bin = ({
         if (isStage === false && isProtocolEdited === true) {
             const fetchProtocol = async() => {
                 try {
-                    await axios.patch("/protocol", {_id: uid, nodes: protocolNodes});
+                    await axios.patch(protocolurl, {_id: uid, nodes: protocolNodes});
                 }
                 catch(error){
                     console.log(error);

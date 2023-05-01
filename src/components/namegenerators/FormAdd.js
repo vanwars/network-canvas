@@ -10,6 +10,10 @@ import { createStage, updateStage } from '../../actions/stages';
 import { createProtocol, updateProtocol } from '../../actions/protocol';
 import axios from 'axios';
 
+const stageurl = "https://network-canvas-web.herokuapp.com/stages";
+const protocolurl = "https://network-canvas-web.herokuapp.com/protocol";
+const uidurl = "https://network-canvas-web.herokuapp.com/uid";
+
 const FormAdd = ({
     uid,
     nodeRef,
@@ -51,7 +55,7 @@ const FormAdd = ({
         if (isStage === true) {
             const fetchStage = async() => {
                 try {
-                    let data = await axios.get("/stages");
+                    let data = await axios.get(stageurl);
                     data = data.data.find((d) => d._id === uid);
                     setStageNodes(data.nodes);
                     setStageEdgeNodes(data.edgeNodes);
@@ -70,7 +74,7 @@ const FormAdd = ({
         if (isStage === true && isStageEdited === true) {
             const fetchStage = async() => {
                 try {
-                    await axios.patch("/stages", {_id: uid, nodes: stageNodes, edgeNodes: stageEdgeNodes, awaitNodes: stageAwaitNodes, coordNodes: stageCoordNodes});
+                    await axios.patch(stageurl, {_id: uid, nodes: stageNodes, edgeNodes: stageEdgeNodes, awaitNodes: stageAwaitNodes, coordNodes: stageCoordNodes});
                 }
                 catch(error){
                     console.log(error);
@@ -86,7 +90,7 @@ const FormAdd = ({
         if (isStage === false) {
             const fetchProtocol = async() => {
                 try {
-                    let data = await axios.get("/protocol");
+                    let data = await axios.get(protocolurl);
                     data = data.data.find((d) => d._id === uid);
                     setProtocolNodes(data.nodes);
                     setProtocolEdgeNodes(data.edgeNodes);
@@ -105,7 +109,7 @@ const FormAdd = ({
         if (isStage === false && isProtocolEdited === true) {
             const fetchProtocol = async() => {
                 try {
-                    await axios.patch("/protocol", {_id: uid, nodes: protocolNodes, edgeNodes: protocolEdgeNodes, awaitNodes: protocolAwaitNodes, coordNodes: protocolCoordNodes});
+                    await axios.patch(protocolurl, {_id: uid, nodes: protocolNodes, edgeNodes: protocolEdgeNodes, awaitNodes: protocolAwaitNodes, coordNodes: protocolCoordNodes});
                 }
                 catch(error){
                     console.log(error);

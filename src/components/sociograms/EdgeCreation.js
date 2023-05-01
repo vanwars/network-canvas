@@ -9,6 +9,10 @@ import { getStages, updateStage, createStage } from '../../actions/stages';
 import { updateProtocol, createProtocol } from '../../actions/protocol';
 import axios from 'axios';
 
+const stageurl = "https://network-canvas-web.herokuapp.com/stages";
+const protocolurl = "https://network-canvas-web.herokuapp.com/protocol";
+const uidurl = "https://network-canvas-web.herokuapp.com/uid";
+
 
 const EdgeCreation = ({
    uid,
@@ -52,7 +56,7 @@ const EdgeCreation = ({
     if (isStage === true) {
         const fetchStage = async() => {
             try {
-                let data = await axios.get("/stages");
+                let data = await axios.get(stageurl);
                 data = data.data.find((d) => d._id === uid);
                 setStageEdgeNodes(data.edgeNodes);
                 setStageEdges(data.edges);
@@ -69,7 +73,7 @@ const EdgeCreation = ({
    useEffect(() => {
     const fetchStage = async() => {
         try {
-            await axios.patch("/stages", {_id: uid, edges: stageEdges});
+            await axios.patch(stageurl, {_id: uid, edges: stageEdges});
         }
         catch(error){
             console.log(error);
@@ -86,7 +90,7 @@ const EdgeCreation = ({
     if (isStage === false) {
         const fetchProtocol = async() => {
             try {
-                let data = await axios.get("/protocol");
+                let data = await axios.get(protocolurl);
                 data = data.data.find((d) => d._id === uid);
                 setProtocolEdgeNodes(data.edgeNodes);
                 setProtocolEdges(data.edges);
@@ -103,7 +107,7 @@ const EdgeCreation = ({
    useEffect(() => {
     const fetchProtocol = async() => {
         try {
-            await axios.patch("/protocol", {_id: uid, edges: protocolEdges});
+            await axios.patch(protocolurl, {_id: uid, edges: protocolEdges});
         }
         catch(error){
             console.log(error);
@@ -295,7 +299,7 @@ const EdgeCreation = ({
             setStageEdgeNodes(newAttrList);
             // dispatch(updateStage(uid, {_id: uid, edgeNodes: newAttrList}));
             try {
-                const result = await axios.patch("/stages", {_id: uid, edgeNodes: newAttrList})
+                const result = await axios.patch(stageurl, {_id: uid, edgeNodes: newAttrList})
             } catch(error) {
                 console.log(error);
             }
@@ -316,7 +320,7 @@ const EdgeCreation = ({
                         console.log("updated edges");
                         setStageEdges(stageEdges.filter((item) => !(item.start === stageStartNode && item.end === index)));
                         setIsStageEdited(true);
-                        await axios.patch("/stages", {_id: uid, edges: stageEdges.filter((item) => !(item.start === stageStartNode && item.end === index))});
+                        await axios.patch(stageurl, {_id: uid, edges: stageEdges.filter((item) => !(item.start === stageStartNode && item.end === index))});
                         // dispatch(updateStage(uid, {_id: uid, edges: stageEdges.filter((item) => !(item.start === stageStartNode && item.end === index))}));
                         ifEdgeExists = true;
                         break;
@@ -324,7 +328,7 @@ const EdgeCreation = ({
                         console.log("updated edges");
                         setStageEdges(stageEdges.filter((item) => !(item.end === stageStartNode && item.start === index)));
                         setIsStageEdited(true);
-                        // await axios.patch("/stages", {_id: uid, edges: stageEdges.filter((item) => !(item.end === stageStartNode && item.start === index))});
+                        // await axios.patch(stageurl, {_id: uid, edges: stageEdges.filter((item) => !(item.end === stageStartNode && item.start === index))});
                         // dispatch(updateStage(uid, {_id: uid, edges: stageEdges.filter((item) => !(item.end === stageStartNode && item.start === index))}));
                         ifEdgeExists = true;
                         // console.log(newEdges);
@@ -350,7 +354,7 @@ const EdgeCreation = ({
                     setStageEdges([...stageEdges, {start: stageStartNode, end: index, width: width, rad: rad, transform: transform, marginLeft: marginLeft, marginTop: marginTop}]);
                     console.log("hehehe");
                     setIsStageEdited(true);
-                    // await axios.patch("/stages", {_id: uid, edges: [...stageEdges, {start: stageStartNode, end: index, width: width, rad: rad, transform: transform, marginLeft: marginLeft, marginTop: marginTop}]});
+                    // await axios.patch(stageurl, {_id: uid, edges: [...stageEdges, {start: stageStartNode, end: index, width: width, rad: rad, transform: transform, marginLeft: marginLeft, marginTop: marginTop}]});
                     // dispatch(updateStage(uid, {_id: uid, edges: [...stageEdges, {start: stageStartNode, end: index, width: width, rad: rad, transform: transform, marginLeft: marginLeft, marginTop: marginTop}]}));
 
                 }
@@ -360,7 +364,7 @@ const EdgeCreation = ({
             setStageEndNodeTmp(null);
             setIsStageEdited(true);
             // // dispatch(updateStage(uid, {_id: uid, edges: stageEdges}));
-            await axios.patch("/stages", {_id: uid, edgeNodes: stageEdgeNodes});
+            await axios.patch(stageurl, {_id: uid, edgeNodes: stageEdgeNodes});
         } else {
             let newAttrList = [...protocolEdgeNodes];
             const index = parseInt(e.target.dataset.idx);
@@ -369,7 +373,7 @@ const EdgeCreation = ({
             newAttrList[index].screenY = 0;
             setProtocolEdgeNodes(newAttrList);
             try {
-                const result = await axios.patch("/protocol", {_id: uid, edgeNodes: newAttrList})
+                const result = await axios.patch(protocolurl, {_id: uid, edgeNodes: newAttrList})
             } catch(error) {
                 console.log(error);
             }
@@ -389,13 +393,13 @@ const EdgeCreation = ({
                 for (let i = 0; i < protocolEdges.length; i++) {
                     if (protocolEdges[i].start === protocolStartNode && protocolEdges[i].end === index) {
                         setProtocolEdges(protocolEdges.filter((item) => !(item.start === protocolStartNode && item.end === index)));
-                        await axios.patch("/protocol", {_id: uid, edges: protocolEdges.filter((item) => !(item.start === protocolStartNode && item.end === index))})
+                        await axios.patch(protocolurl, {_id: uid, edges: protocolEdges.filter((item) => !(item.start === protocolStartNode && item.end === index))})
                         // dispatch(updateProtocol(uid, {edges: protocolEdges.filter((item) => !(item.start === protocolStartNode && item.end === index))}))
                         ifEdgeExists = true;
                         break;
                     } else if (protocolEdges[i].end === protocolStartNode && protocolEdges[i].start === index) {
                         setProtocolEdges(protocolEdges.filter((item) => !(item.end === protocolStartNode && item.start === index)));
-                        // await axios.patch("/protocol", {_id: uid, edges: protocolEdges.filter((item) => !(item.end === protocolStartNode && item.start === index))})
+                        // await axios.patch(protocolurl, {_id: uid, edges: protocolEdges.filter((item) => !(item.end === protocolStartNode && item.start === index))})
                         // dispatch(updateProtocol(uid, {edges: protocolEdges.filter((item) => !(item.end === protocolStartNode && item.start === index))}))
                         ifEdgeExists = true;
                         // console.log(newEdges);
@@ -421,7 +425,7 @@ const EdgeCreation = ({
                     }
                     setProtocolEdges([...protocolEdges, {start: protocolStartNode, end: index, width: width, rad: rad, transform: transform, marginLeft: marginLeft, marginTop: marginTop}]);
                     setIsProtocolEdited(true);
-                    // await axios.patch("/protocol", {_id: uid, edges: [...protocolEdges, {start: protocolStartNode, end: index, width: width, rad: rad, transform: transform, marginLeft: marginLeft, marginTop: marginTop}]})
+                    // await axios.patch(protocolurl, {_id: uid, edges: [...protocolEdges, {start: protocolStartNode, end: index, width: width, rad: rad, transform: transform, marginLeft: marginLeft, marginTop: marginTop}]})
                     // dispatch(updateProtocol(uid, {_id: uid, edges: [...protocolEdges, {start: protocolStartNode, end: index, width: width, rad: rad, transform: transform, marginLeft: marginLeft, marginTop: marginTop}]}));
 
                 }
@@ -430,7 +434,7 @@ const EdgeCreation = ({
             setProtocolStartNodeTmp(null);
             setProtocolEndNodeTmp(null);
             setIsProtocolEdited(true);
-            await axios.patch("/protocol", {_id: uid, edgeNodes: protocolEdgeNodes});
+            await axios.patch(protocolurl, {_id: uid, edgeNodes: protocolEdgeNodes});
             // dispatch(updateProtocol(uid, {edges: protocolEdges}));
         }
        
