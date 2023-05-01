@@ -59,7 +59,7 @@ const UidGenerator = ({
             emailjs.send('service_7zt40af', 'template_871j3ls', data, 'rQHtH7Rgtdg0lscSe')
                 .then((result) => console.log("result is: ", result));
             setCount(count + 1);
-            navigate("/");
+            navigate("../");
         }else{
             setShowNoValidEmail(true);
         }
@@ -90,7 +90,7 @@ const UidGenerator = ({
                         <Button style={{marginTop: "20px"}} onClick={() => sendEmail()}>Send the UID to this email address</Button>
                         <Button style={{marginTop: "20px"}} onClick={() => {
                             setCount(count + 1);
-                            navigate("/");
+                            navigate("../");
                         }}>Proceed to the main page without sending the UID.</Button>
                     </Form>
                 </div> : 
@@ -103,7 +103,7 @@ const UidGenerator = ({
                             </div>
                             <div className="uid-btn" onClick={() => {
                                 setUid(inputUid);
-                                navigate("/");
+                                navigate("../");
                             }}>Submit</div>
                         </div>}
                     <div className="uid-generator-switch" onClick={() => setIsGenerateOrInput(!isGenerateOrInput)} style={{color: "white"}}>
